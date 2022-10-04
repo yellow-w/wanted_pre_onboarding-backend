@@ -1,6 +1,6 @@
 import { IOtions } from "../@types/sequelize/config";
 
-const host = process.env.DB_HOST || "localhost";
+const host = process.env.DB_HOST || "127.0.0.1";
 const username = process.env.DB_USERNAME || "ivy";
 const password = process.env.DB_PASSWORD || "GOODDAY";
 const database = process.env.DB_DATABASE || "Hiring";

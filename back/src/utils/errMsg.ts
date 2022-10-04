@@ -1,5 +1,5 @@
 const errMsg = (e: Error) => {
-    console.log(e.message);
+    console.log(e);
 }
 
 export default errMsg;
