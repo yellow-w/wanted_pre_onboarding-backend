@@ -1,6 +1,6 @@
 npm init
-npm i typescript express dotenv sequelize-typescript mysql2 eslint prettier nodemon ts-node
-npm i -D nodemon
+npm i typescript express dotenv sequelize-typescript mysql mysql2 eslint prettier nodemon ts-node
+npm i -D nodemon @types/express @types/node"
 
 ## DB 스키마
 
