@@ -8,7 +8,6 @@ import { AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table } 
 	freezeTableName: true,
 	tableName: "user",
 })
-
 class User extends Model {
     @PrimaryKey
     @AutoIncrement
