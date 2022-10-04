@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"declaration": true,
+		"removeComments": true,
+
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+
+		"allowJs": true,
+		"module": "commonjs",
+		"target": "ES6"
+	}
+}
