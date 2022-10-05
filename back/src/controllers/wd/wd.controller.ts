@@ -16,9 +16,10 @@ const post = async(req:Request, res: Response) => {
 
 //공고 조회
 const read = async(req:Request, res: Response) => {
-    const {w_id} = req.body;
+    const {c_id} = req.body;
     try{
-        response = await wdService.read(w_id);
+        //회사의 c_id에 해당하는 모든 채용 공고 가져옴
+        response = await wdService.read(c_id);
         if(response.status) throw new Error(response.error);
     } catch (e){
         errMsg(e);
@@ -31,7 +32,7 @@ const update = async(req:Request, res: Response) => {
     const {wdInfo} = req.body;
     try{
         response = await wdService.update(wdInfo);
-        if(response.status) throw new Error(response.error);
+        if(response.status !== 1) throw new Error(response.error);
     } catch (e){
         errMsg(e);
     }
@@ -43,7 +44,7 @@ const remove = async(req:Request, res: Response) => {
     const {w_id} = req.body;
     try{
         response = await wdService.remove(w_id);
-        if(response.status) throw new Error(response.error);
+        if(response.status !== 1) throw new Error(response.error);
     } catch (e){
         errMsg(e);
     }
@@ -54,19 +55,93 @@ const remove = async(req:Request, res: Response) => {
 const requestAll = async( req: Request, res: Response) => {
     try{
         response = await wdService.requestAll();
-        if(response.status) throw new Error(response.error);
+        if(response.status !== 1) throw new Error(response.error);
     } catch (e){
         errMsg(e);
     }
     res.json(response);
 }
 
+const search = async(req: Request, res: Response) =>{
+    const {keyWord} = req.query
+    try{
+        response = await wdService.search(`%${keyWord}%`);
+        if(response.status !== 1) throw new Error(response.error);
+    } catch(e){
+        errMsg(e)
+    }
+    res.json(response)
+}
+
+
+/*
+[
+	{
+		"채용공고_id": 채용공고_id,
+	  "회사명":"원티드랩",
+	  "국가":"한국",
+	  "지역":"서울",
+	  "채용포지션":"백엔드 주니어 개발자",
+	  "채용보상금":1500000,
+	  "사용기술":"Python"
+	},
+	{
+		"채용공고_id": 채용공고_id,
+	  "회사명":"원티드코리아",
+	  "국가":"한국",
+	  "지역":"부산",
+	  "채용포지션":"프론트엔드 개발자",
+	  "채용보상금":500000,
+	  "사용기술":"javascript"
+	}
+]
+
+
+*/
+
+
 const recruitController = {
     post,
     update,
     read,
     remove,
-    requestAll
+    requestAll,
+    search
 };
 
 export default recruitController;
+
+
+/*
+{
+	"채용공고_id": 채용공고_id,
+  "사용자_id": 사용자_id
+}
+*/
+
+
+//채용 공고 목록
+/*
+[
+	{
+		"채용공고_id": 채용공고_id,
+	  "회사명":"원티드랩",
+	  "국가":"한국",
+	  "지역":"서울",
+	  "채용포지션":"백엔드 주니어 개발자",
+	  "채용보상금":1500000,
+	  "사용기술":"Python"
+	},
+	{
+		"채용공고_id": 채용공고_id,
+	  "회사명":"네이버",
+	  "국가":"한국",
+	  "지역":"판교",
+	  "채용포지션":"Django 백엔드 개발자",
+	  "채용보상금":1000000,
+	  "사용기술":"Django"
+	},
+  ...
+]
+
+*/
