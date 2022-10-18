@@ -7,8 +7,8 @@ import Wd from "../../sequelize/models/wd/wd.model";
 import errMsg from "../../utils/errMsg";
 import responseObj from "../../utils/response";
 
-let response;
 const post = async (wdInfo: IWd) => {
+	let response;
 	try {
 		const result = await new Wd(wdInfo, {
 			raw: true,
@@ -22,6 +22,7 @@ const post = async (wdInfo: IWd) => {
 };
 
 const update = async (wdInfo: IWd) => {
+	let response;
 	const {
 		id,
 		signing_bonus,
@@ -62,6 +63,7 @@ const update = async (wdInfo: IWd) => {
 };
 
 const read = async (id: number) => {
+	let response;
 	try {
 		const result = await Wd.findAll({
 			attributes: {
@@ -113,6 +115,7 @@ const read = async (id: number) => {
 };
 
 const remove = async (id: number) => {
+	let response;
 	try {
 		const deletable = await Wd.destroy({
 			where: {
@@ -134,6 +137,7 @@ const remove = async (id: number) => {
 };
 
 const requestAll = async () => {
+	let response;
 	try {
 		const result = await Wd.findAll({
             attributes:['id', 'signing_bonus', 'position', 'tech_stack'],
@@ -155,6 +159,7 @@ const requestAll = async () => {
 };
 
 const search = async (keyWord: any) => {
+	let response;
 	try {
 		const result = await Wd.findAll({
 			attributes:['id', 'position', 'signing_bonus','tech_stack'],
@@ -193,6 +198,7 @@ const search = async (keyWord: any) => {
 };
 
 const apply = async (w_id:number, u_id:number) => {
+	let response;
 	try {
 		const isIn = await Application.findOne({
 			where: {
