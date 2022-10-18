@@ -1,8 +1,15 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
+		"outDir": "./dist",
 		"declaration": true,
 		"removeComments": true,
+		"baseUrl": "./",
+		"incremental": true,
+		"skipLibCheck": true,
+
+		"strictBindCallApply": true,
+		"forceConsistentCasingInFileNames": true,
+		"useUnknownInCatchVariables": false,
 
 		"esModuleInterop": true,
 		"experimentalDecorators": true,

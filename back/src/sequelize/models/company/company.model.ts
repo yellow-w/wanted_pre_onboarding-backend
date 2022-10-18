@@ -1,5 +1,5 @@
-import { AllowNull, AutoIncrement, Column, DataType, Default, Model, PrimaryKey, Table } from "sequelize-typescript";
-
+import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, Default, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Wd from "../wd/wd.model";
 
 @Table({
     modelName:'Company',
@@ -8,22 +8,28 @@ import { AllowNull, AutoIncrement, Column, DataType, Default, Model, PrimaryKey,
     freezeTableName: true,
     tableName:'company'
  })
+
 class Company extends Model {
     @PrimaryKey
+    @HasMany(()=>Wd,
+    {
+        foreignKey: 'c_id',
+        as: 'W'
+    })
     @AutoIncrement
     @AllowNull(false)
 	@Column({
 		type: DataType.INTEGER,
 		comment: '회사에 대한 식별자',
 	})
-	c_id: number;
+	id: number;
 
     @AllowNull(false)
 	@Column({ 
         type: DataType.STRING,
         comment: '회사명'
      })
-	c_name: string;
+	name: string;
 
     @AllowNull(false)
     @Default('한국')
@@ -31,7 +37,7 @@ class Company extends Model {
         type: DataType.STRING,
         comment: '회사 국적'
     })
-	c_nationality: string;
+	nationality: string;
 
     @AllowNull(false)
     @Default('서울')
@@ -39,7 +45,9 @@ class Company extends Model {
         type: DataType.STRING,
         comment: '회사 위치'
     })
-	c_location: string;
+	location: string;
+
+
 }
 
 export default Company;

@@ -1,4 +1,5 @@
-import { AllowNull, AutoIncrement, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Company from "../company/company.model";
 
 @Table({
 	modelName: "Wd",
@@ -15,42 +16,47 @@ class Wd extends Model {
         type: DataType.INTEGER,
         comment:'채용 공고에 대한 식별자'
     })
-	w_id: number;
+	id: number;
 
     @AllowNull(false)
+    @BelongsTo(()=>Company, {
+        foreignKey: 'c_id',
+        as:'C'
+    })
     @Column({
         type: DataType.INTEGER,
-        comment:'공고를 업로드 한 회사에 대한 식별자'
+        comment:'공고를 업로드 한 회사에 대한 식별자',
     })
-	c_id: number;
 
+	c_id: number;
+  
     @AllowNull(false)
     @Column({
         type: DataType.INTEGER,
         comment:'채용 보상금'
     })
-	w_signing_bonus: number;
+	signing_bonus: number;
 
     @AllowNull(false)
     @Column({
         type: DataType.STRING,
         comment:'채용 포지션'
     })
-	w_position: string;
+	position: string;
 
     @AllowNull(false)
     @Column({
         type: DataType.STRING,
         comment:'채용 내용'
     })
-	w_description: string;
+	description: string;
 
     @AllowNull(false)
     @Column({
         type: DataType.STRING,
         comment:'사용 기술'
     })
-	w_tech_stack: string;
+	tech_stack: string;
 }
 
 export default Wd;
