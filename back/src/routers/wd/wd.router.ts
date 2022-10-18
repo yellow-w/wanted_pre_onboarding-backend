@@ -8,6 +8,6 @@ router.post('/remove',recruitController.remove);
 router.post('/requestAll',recruitController.requestAll);
 router.get('/search',recruitController.search);
 router.post('/read/:id',recruitController.read);
-
+router.post('/apply/:w_id', recruitController.apply);
 
 export default router;

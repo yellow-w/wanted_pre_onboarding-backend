@@ -1,4 +1,5 @@
 import { Op } from "sequelize";
+import Application from "../../../src/sequelize/models/application/application.model";
 import sequelize from "../../../src/sequelize/index";
 import { IWd } from "../../@types/sequelize/models/wd.model";
 import Company from "../../sequelize/models/company/company.model";
@@ -191,6 +192,28 @@ const search = async (keyWord: any) => {
 	return response;
 };
 
+const apply = async (w_id:number, u_id:number) => {
+	try {
+		const isIn = await Application.findOne({
+			where: {
+				u_id,
+				w_id
+			},
+			raw: true
+		});
+		if (isIn) throw new Error('이미 지원한 공고입니다')
+		await new Application({
+			u_id,
+			w_id,
+		}).save();
+		response = responseObj(1, '해당 공고에 성공적으로 지원하였습니다', undefined);
+	} catch (e) {
+		response = responseObj(0, undefined, e.message);
+		errMsg(e);
+	}
+	return response;
+}
+
 const wdService = {
 	post,
 	update,
@@ -198,6 +221,7 @@ const wdService = {
 	remove,
 	requestAll,
 	search,
+	apply
 };
 
 export default wdService;

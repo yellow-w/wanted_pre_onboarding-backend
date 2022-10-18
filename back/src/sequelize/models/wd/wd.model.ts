@@ -1,4 +1,5 @@
-import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import Application from "../application/application.model";
 import Company from "../company/company.model";
 
 @Table({
@@ -11,6 +12,11 @@ import Company from "../company/company.model";
 class Wd extends Model {
     @PrimaryKey
     @AutoIncrement
+    @HasMany(()=>Application,
+    {
+        foreignKey: 'w_id',
+        as: 'A'
+    })
     @AllowNull(false)
     @Column({
         type: DataType.INTEGER,
