@@ -15,7 +15,6 @@ const post = async(req:Request, res: Response) => {
     }
 }
 
-//공고 조회
 const read = async(req:Request, res: Response) => {
     let response;
     const id = Number(req.params.id);
@@ -28,7 +27,6 @@ const read = async(req:Request, res: Response) => {
     res.status(500).json(response);
 }
 
-//공고 수정
 const update = async(req:Request, res: Response) => {
     let response;
     const {wdInfo} = req.body;
@@ -41,7 +39,6 @@ const update = async(req:Request, res: Response) => {
     res.status(500).json(response);
 }
 
-//공고 삭제
 const remove = async(req:Request, res: Response) => {
     let response;
     const {id} = req.body;
@@ -54,7 +51,6 @@ const remove = async(req:Request, res: Response) => {
     res.status(500).json(response);
 }
 
-//리스트 페이지
 const requestAll = async( req: Request, res: Response) => {
     let response;
     try{
@@ -91,7 +87,7 @@ const apply = async(req: Request, res: Response) =>{
 }
 
 
-const recruitController = {
+const wdController = {
     post,
     update,
     read,
@@ -101,4 +97,4 @@ const recruitController = {
     apply
 };
 
-export default recruitController;
+export default wdController;

@@ -22,13 +22,13 @@ class User extends Model {
         type: DataType.INTEGER,
         comment: '사용자에 대한 식별자'
     })
-    u_id: number;
+    id: number;
 
     @Column({
         type: DataType.STRING,
         comment: '사용자 이름'
     })
-    u_name: string;
+    name: string;
 }
 
 export default User;
