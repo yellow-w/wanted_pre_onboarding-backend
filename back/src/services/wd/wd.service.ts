@@ -1,7 +1,7 @@
 import { Op } from "sequelize";
 import Application from "../../../src/sequelize/models/application/application.model";
 import sequelize from "../../../src/sequelize/index";
-import { IWd } from "../../@types/sequelize/models/wd.model";
+import { IWd } from "../../@types/sequelize/model.d.ts/model";
 import Company from "../../sequelize/models/company/company.model";
 import Wd from "../../sequelize/models/wd/wd.model";
 import errMsg from "../../utils/errMsg";

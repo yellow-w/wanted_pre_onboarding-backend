@@ -6,3 +6,10 @@ export interface IWd {
     description: string;
     tech_stack: string;
 }
+
+export interface ICompany{
+    id?: number;
+    name: string;
+    nationality: string;
+    location: string;
+}
